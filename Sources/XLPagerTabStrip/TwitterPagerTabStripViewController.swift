@@ -182,7 +182,7 @@ open class TwitterPagerTabStripViewController: PagerTabStripViewController, Page
             let navTitleLabel: UILabel = {
                 let label = UILabel()
                 label.text = indicatorInfo.title
-                label.font = UIWindow.isPortrait ? settings.style.portraitTitleFont : settings.style.landscapeTitleFont
+                label.font = settings.style.landscapeTitleFont
                 label.textColor = settings.style.titleColor
                 label.alpha = 0
                 return label
@@ -196,13 +196,12 @@ open class TwitterPagerTabStripViewController: PagerTabStripViewController, Page
 
     private func setNavigationViewItemsPosition(updateAlpha: Bool) {
         guard let distance = distanceValue else { return }
-        let isPortrait = UIWindow.isPortrait
         let navBarHeight: CGFloat = navigationController!.navigationBar.frame.size.height
         for (index, label) in childTitleLabels.enumerated() {
             if updateAlpha {
                 label.alpha = currentIndex == index ? 1 : 0
             }
-            label.font = isPortrait ? settings.style.portraitTitleFont : settings.style.landscapeTitleFont
+            label.font = settings.style.landscapeTitleFont
             let viewSize = label.intrinsicContentSize
             let originX = distance - viewSize.width/2 + CGFloat(index) * distance
             let originY = (CGFloat(navBarHeight) - viewSize.height) / 2
